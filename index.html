@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" href="style.css">
+        <title>Calculator</title>
+        
+    </head>
+    <body>
+        <div class="parent">
+           
+            <button onclick="buttonC()" class="buttonc">C</button>
+            <button onclick="buttonSeven()" class=" button7">7</button>
+            <button onclick="buttonFour()" class="button4">4</button>
+            <button onclick="buttonOne()" class="button1">1</button>
+            <button onclick="buttonDivide()" class="divide">/</button>
+            <button onclick="buttonEight()" class="button8">8</button>
+            <button onclick="buttonFive()" class=" button5">5</button>
+            <button onclick="buttonTwo()" class="button2">2</button>
+            <button onclick="buttonMultiply()" class="multiply">*</button>
+            <button onclick="buttonNine()" class="button9">9</button>
+            <button onclick="buttonSix()" class="button6">6</button>
+            <button onclick="buttonThree()" class="button3">3</button>
+            <button onclick="buttonBack()" class="backbutton"> <-     </button>
+            <button onclick="buttonMinus()" class="minusbutton">-</button>
+            <button onclick="buttonPlus()" class="plusbutton">+</button>
+            <button onclick="buttonDecimal()" class="decimalbutton">.</button>
+            <button onclick="buttonEqual()" class="equalbutton">=</button>
+            <p id="textbox" class="textbox">0</p>
+            <p  id="textbox2" class="textbox2"></p>
+             <button onclick="buttonZero()" class="button0">0</button> 
+        </div>
+      
+        <script>
+            var textBox=[];
+            var index = 0;
+            var results=[];
+            var resultsCheck=0;
+            var operator=[];
+             var m=0;  
+   var topTextt=[];
+    let textarea = document.getElementById("textbox");
+    textarea.name="textarea";
+
+       
+      let textarea2= document.getElementById("textbox2");
+      textarea2.name= "textarea2";
+      
+      window.addEventListener("keypress", (event) =>{
+           console.log(event);
+         if (event.key == "1"){
+             buttonOne();
+         }
+          if (event.key == "2"){
+             buttonTwo();
+         }
+          if (event.key == "3"){
+             buttonThree();
+         }
+          if (event.key == "4"){
+             buttonFour();
+         }
+          if (event.key == "5"){
+             buttonFive();
+         }
+          if (event.key == "6"){
+             buttonSix();
+         }
+          if (event.key == "7"){
+             buttonSeven();
+         }
+          if (event.key == "8"){
+             buttonEight();
+         }
+          if (event.key == "9"){
+             buttonNine();
+         }
+          if (event.key == "0"){
+             buttonZero();
+         }
+          if (event.key == "+"){
+             buttonPlus();
+         }
+          if (event.key == "*"){
+             buttonMultiply();
+         }
+          if (event.key == "-"){
+             buttonMinus();
+         }
+          if (event.key == "/"){
+             buttonDivide();
+         }
+         
+    });
+    
+    function topText(){
+        topTextt+= results[m]+ " "+ operator[m]+ " ";
+         m +=1; 
+        textarea2.innerHTML= topTextt;
+      console.log(topTextt+"M="+m);
+   }
+    function buttonC(){
+        index = 0;
+                textBox=[];
+                operator=[];
+                results=[];
+                textBox.length = 0;
+                textarea.innerHTML = "";
+                textarea2.innerHTML="";
+                toptextt=[];
+                m=0;
+    }        
+     
+    
+    function buttonOne(){
+            textBox[index] = 1;
+                index += 1;
+                textarea.innerHTML = textBox.join("");
+            }
+           
+    function buttonTwo(){
+              textBox[index] = 2;
+                index += 1;
+                textarea.innerHTML = textBox.join("");  
+            }
+            
+    function buttonThree(){
+                textBox[index] = 3;
+                index += 1;
+                textarea.innerHTML = textBox.join("");
+            }
+            
+    function buttonFour(){
+                  textBox[index] = 4;
+                index += 1;
+                textarea.innerHTML = textBox.join("");
+            }
+           
+    function buttonFive(){
+                textBox[index] = 5;
+                index += 1;
+                textarea.innerHTML = textBox.join("");
+           }
+           
+    function buttonSix(){
+                textBox[index] = 6;
+                index += 1;
+                textarea.innerHTML = textBox.join("");
+           }
+            
+    function buttonSeven(){
+                textBox[index] = 7;
+                index += 1;
+                textarea.innerHTML = textBox.join("");
+            }
+            
+    function buttonEight(){
+                  textBox[index] = 8;
+                index += 1;
+                textarea.innerHTML = textBox.join("");
+            }
+            
+    function buttonNine(){
+                 textBox[index] = 9;
+                index += 1;
+                textarea.innerHTML = textBox.join("");
+            }
+            
+    function buttonZero(){
+                textBox[index] = 0;
+                index += 1;              
+                if (textBox[0] == "0"){
+                console.log("Broke");
+                index--; } 
+        textarea.innerHTML = textBox.join("");
+            }
+            
+    function buttonPlus(){
+                 var plusCheck =index;
+                if (operator[plusCheck - 1] != "+") {
+                    results[resultsCheck]= textarea.innerHTML;
+            operator[resultsCheck]="+";
+        resultsCheck ++;
+            textBox[index] = "+";
+                    index += 1;
+                   textBox.splice(0,textBox.length);
+             console.log("The result numbers are: " + results);        
+            console.log("The operators are: " + operator);
+                }
+textarea.innerHTML = "";
+
+     topText();     
+ 
+            }
+            
+    function buttonMinus(){
+                 if (textBox[index - 1] != "-") {
+                    results[resultsCheck]= textarea.innerHTML;
+            operator[resultsCheck]="-";
+        resultsCheck ++;
+            textBox[index] = "-";
+                    index += 1;
+                   textBox.splice(0,textBox.length);
+             console.log("The result numbers are: " + results);        
+            console.log("The operators are: " + operator);
+                }
+textarea.innerHTML = "";
+            topText();   
+    }
+            
+    
+    function buttonMultiply(){
+         if (textBox[index - 1] != "*") {
+                    results[resultsCheck]= textarea.innerHTML;
+            operator[resultsCheck]="*";
+        resultsCheck ++;
+            textBox[index] = "*";
+                    index += 1;
+                   textBox.splice(0,textBox.length);
+             console.log("The result numbers are: " + results);        
+            console.log("The operators are: " + operator);
+                }
+                textarea.innerHTML = "";
+   topText();   
+    }
+          
+      function buttonDivide(){
+          if (textBox[index - 1] != "/") {
+                    results[resultsCheck]= textarea.innerHTML;
+            operator[resultsCheck]="/";
+        resultsCheck ++;
+            textBox[index] = "/";
+                    index += 1;
+                   textBox.splice(0,textBox.length);
+             console.log("The result numbers are: " + results);        
+            console.log("The operators are: " + operator);
+                }
+textarea.innerHTML = "";
+     topText();   
+    }
+      function buttonEqual(){
+          results.push(textarea.innerHTML);
+                 console.log("The result numbers are: "+ results);
+        textarea2.innerHTML="";
+        var i;
+                i=0;
+                    var solution= parseInt(results[i],10);
+                    
+        for (n=0; n<=operator.length;n++)
+                     {
+                    
+            if (operator[n] =="+"){
+                  i++;
+               
+                solution +=parseInt(results[i],10);
+          
+        }
+            if (operator[n]== "-"){
+                i++;
+                    solution -= parseInt(results[i],10);
+            }    
+             if (operator[n]== "*"){
+                i++;
+                    solution *= parseInt(results[i],10);
+        }
+            if (operator[n] == "/"){
+                i++;
+                solution /= parseInt(results[i],10);
+            }
+    }
+                   m=0;
+                   topTextt=[];
+                    results=[];
+                    results[0]=solution;
+                    index=0;
+        operator=[];
+                    resultsCheck=0;
+        console.log ("The solution is: " + solution+ ""+ operator);
+        textarea.innerHTML=  solution;
+      }
+       function buttonBack(){
+           textBox.pop();
+           console.log(textBox);
+                  textarea.innerHTML = textBox.join("");
+
+            index--;
+       }   
+        </script>      
+    </body>
+</html>
